@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Vianettsms::VERSION
   s.authors     = ["Juan Pablo Taulamet"]
   s.email       = ["taulamet@gmail.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/taulamet/vianettsms"
   s.summary     = %q{Send sms messages using Vianett service from ruby}
   s.description = %q{Send sms messages using Vianett service from ruby}
 
