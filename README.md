@@ -1,28 +1,37 @@
 vianettsms
 ==========
 
-Gem for send sms messages using Vianett service from ruby.
+Gem for send sms messages using Vianett service from ruby. 
+(Web site: http://www.vianett.com/)
 
-= Installation on Rails App
+Installation
+============
 
-You install the gem in your rails app by adding it your +Gemfile+:
+From rubygems
+    gem install vianettsms
+
+or from github: You install the gem in your rails app by adding it your Gemfile:
 
     gem 'vianettsms', :git => 'git://github.com/taulamet/vianettsms.git'
 
-and running
-
     bundle install
 
-= Usage
 
-Account Configuration
+Ruby sample script
+==================
 
-Vianettsms.config = { :username => "testaccount@demo.com", :password => "secret" }
+    require 'rubygems'
+    require 'vianettsms'
 
-Sms Deliver
+    # Account Configuration
+    Vianettsms.config = { :username => "testaccount@demo.com", :password => "secret" }
 
-sms = Vianettsms::Sms.new(:to => "543424555555", :message => "Aloha!", :msgid => "1234")
+    # sms creation
+    sms = Vianettsms::Sms.new(:to => "543424555555", :message => "Aloha!", :msgid => "1234")
 
-sms.deliver
-#
-
+    sms.deliver
+    
+Testing
+=======
+    rspec spec # Mocking Vianett API
+    VIANETSMS_ENABLED=true rspec spec # Using Vianett API (require valid credentials to work)
