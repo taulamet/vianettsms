@@ -26,6 +26,13 @@ module Vianettsms
       @delivered
     end
 
+    def valid?
+      raise(ArgumentError, ":to is required") if @to.nil? or @to.empty?
+      raise(ArgumentError, ":message is required") if @message.nil? or @message.empty?
+      raise(ArgumentError, ":msgid is required") if @msgid.nil? or @msgid.empty?
+      not (@to.nil? or @to.empty? or @message.nil? or @message.empty? or @msgid.nil? or @msgid.empty?)
+    end
+
     private 
 
     attr_accessor :response
@@ -38,13 +45,6 @@ module Vianettsms
         :msg => @message || "",
         :msgid => @msgid || ""
       }
-    end
-
-    def valid?
-      raise(ArgumentError, ":to is required") if @to.nil? or @to.empty?
-      raise(ArgumentError, ":message is required") if @message.nil? or @message.empty?
-      raise(ArgumentError, ":msgid is required") if @msgid.nil? or @msgid.empty?
-      not (@to.nil? or @to.empty? or @message.nil? or @message.empty? or @msgid.nil? or @msgid.empty?)
     end
 
     def handle_response(response)
