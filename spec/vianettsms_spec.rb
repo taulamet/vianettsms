@@ -58,5 +58,71 @@ describe Vianettsms::Sms, "#deliver" do
 
   end
 
+  context "Without msgid" do
+
+    before { Vianettsms.config =  valid_config }
+    
+    let(:params) do {
+        :msgid => '',
+        :to => '4711111111',
+        :message => 'Hello World' }
+    end
+
+    let(:sms) { 
+      sms = Vianettsms::Sms.new(params)
+      sms.deliver
+      sms
+    }
+
+    it "should raise ArgumentError exception" do
+      expect{ sms.valid? }.to raise_error(ArgumentError)
+    end
+
+  end
+
+  context "Without message" do
+
+    before { Vianettsms.config =  valid_config }
+    
+    let(:params) do {
+        :msgid => '1234',
+        :to => '4711111111',
+        :message => '' }
+    end
+
+    let(:sms) { 
+      sms = Vianettsms::Sms.new(params)
+      sms.deliver
+      sms
+    }
+
+    it "should raise ArgumentError exception" do
+      expect{ sms.valid? }.to raise_error(ArgumentError)
+    end
+
+  end
+
+  context "Without to" do
+
+    before { Vianettsms.config =  valid_config }
+    
+    let(:params) do {
+        :msgid => '1234',
+        :to => nil,
+        :message => 'Hello World' }
+    end
+
+    let(:sms) { 
+      sms = Vianettsms::Sms.new(params)
+      sms.deliver
+      sms
+    }
+
+    it "should raise ArgumentError exception" do
+      expect{ sms.valid? }.to raise_error(ArgumentError)
+    end
+
+  end
+
 end
 
