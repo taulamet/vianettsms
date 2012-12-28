@@ -8,6 +8,7 @@ Installation
 ============
 
 From rubygems
+
     gem install vianettsms
 
 or from github: You install the gem in your rails app by adding it your Gemfile:
